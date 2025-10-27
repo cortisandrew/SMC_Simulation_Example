@@ -3,16 +3,15 @@ using SMC_Simulation_Example;
 
 Console.WriteLine("Hello, World!");
 
-// Run the simulation MANY times
-int n = 10000000;
+int[] problemSizes = new int[] { 100, 10000, 1000000 };
 
 ISimulation simulation = new CoinGameSimulation();
+MonteCarloDriver driver = new MonteCarloDriver(simulation);
 
-List<double> results = new List<double>();
-
-for (int i = 0; i < n; i++)
+foreach (int n in problemSizes)
 {
-    results.Add(simulation.Simulate());
+    // Run the simulation MANY times
+    driver.RunSimulations(n);
+    double estimatedMean = driver.EstimatedMean();
+    Console.WriteLine($"Estimated expected winnings (or loss) for {n} simulations: {estimatedMean}");
 }
-
-Console.WriteLine($"Estimated expected winnings (or loss): {results.Average()}");
