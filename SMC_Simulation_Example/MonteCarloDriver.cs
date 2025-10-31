@@ -104,5 +104,7 @@ namespace SMC_Simulation_Example
             long n_required = (long)Math.Ceiling(variance / (RMSE_Target * RMSE_Target));
             return n_required;
         }
+
+        // TODO: Add estimation for Confidence Intervals
     }
 }
